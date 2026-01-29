@@ -1,10 +1,15 @@
-## Features
-- Input bot token via argument or prompt
-- Clean output
-- History log stored locally
+# Telegram Topic ID Finder (Local CLI)
 
-## Usage
-### With argument
+Tool CLI lokal untuk mengambil:
+- chat_id
+- topic_id (message_thread_id)
+
+## Requirement
+- bash
+- curl
+- jq
+
+## Download
 ```bash
-curl -sSL https://raw.githubusercontent.com/USERNAME/telegram-topic-id/main/telegram-topic-id.sh | bash -s -- BOT_TOKEN
-
+curl -O https://raw.githubusercontent.com/WaeTechDesign/telegram-topic-id/master/telegram-topic-id.sh
+chmod +x telegram-topic-id.sh

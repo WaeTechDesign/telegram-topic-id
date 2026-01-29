@@ -4,29 +4,58 @@ set -e
 # ===============================
 # CONFIG
 # ===============================
-LOG_DIR="$HOME/.telegram-topic-id"
+APP_NAME="telegram-topic-id"
+LOG_DIR="$HOME/.${APP_NAME}"
 LOG_FILE="$LOG_DIR/history.log"
 
 mkdir -p "$LOG_DIR"
 
 # ===============================
-# INPUT TOKEN
+# INPUT BOT TOKEN (INTERACTIVE)
 # ===============================
-BOT_TOKEN="$1"
+
+echo -n "Enter BOT TOKEN: "
+BOT_TOKEN=""
+
+while IFS= read -r -s -n1 char; do
+  if [[ $char == $'\0' ]]; then
+    break
+  elif [[ $char == $'\177' ]]; then
+    # Backspace
+    if [ ${#BOT_TOKEN} -gt 0 ]; then
+      BOT_TOKEN="${BOT_TOKEN%?}"
+      echo -ne "\b \b"
+    fi
+  elif [[ $char == $'\n' ]]; then
+    break
+  else
+    BOT_TOKEN+="$char"
+    echo -n "*"
+  fi
+done
+echo
 
 if [ -z "$BOT_TOKEN" ]; then
-  read -rsp "Enter BOT TOKEN: " BOT_TOKEN
-  echo
+  echo "ERROR: BOT TOKEN is required"
+  exit 1
 fi
 
+
+echo
+
 if [ -z "$BOT_TOKEN" ]; then
-  echo "ERROR: BOT TOKEN required"
+  echo "ERROR: BOT TOKEN is required"
   exit 1
 fi
 
 # ===============================
-# DEP CHECK
+# DEPENDENCY CHECK
 # ===============================
+if ! command -v curl >/dev/null 2>&1; then
+  echo "ERROR: curl not installed"
+  exit 1
+fi
+
 if ! command -v jq >/dev/null 2>&1; then
   echo "ERROR: jq not installed"
   echo "Install with: sudo apt install jq -y"
@@ -34,7 +63,7 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 # ===============================
-# FETCH DATA
+# FETCH TELEGRAM DATA
 # ===============================
 API_URL="https://api.telegram.org/bot${BOT_TOKEN}/getUpdates"
 
