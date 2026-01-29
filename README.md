@@ -26,22 +26,33 @@ Dirancang agar aman, mudah dipakai, dan portable ke berbagai perangkat (laptop, 
 
 Install di Ubuntu / Debian:
 
+```bash
 sudo apt update
 sudo apt install -y curl jq
+```
+
+---
 
 ## 📥 Download
 
+```bash
 curl -O https://raw.githubusercontent.com/WaeTechDesign/telegram-topic-id/master/telegram-topic-id.sh
 chmod +x telegram-topic-id.sh
+```
 
 ## 🚀 Usage
 
 Jalankan secara lokal:
+
+```bash
 ./telegram-topic-id.sh
+```
 
 Script akan meminta BOT TOKEN secara interaktif:
 
+```markdown
 Enter BOT TOKEN: ********************
+```
 
 ## 📤 Output Example
 ```yaml
@@ -62,15 +73,24 @@ FROM      : @username
 
 Setiap eksekusi akan otomatis disimpan ke:
 
+```bash
 ~/.telegram-topic-id/history.log
+```
 
 Lihat log:
 
+```bash
 cat ~/.telegram-topic-id/history.log
+```
 
 Live monitoring: 
+
+```bash
 tail -f ~/.telegram-topic-id/history.log
+```
 
 Bersihkan log: 
-> ~/.telegram-topic-id/history.log
 
+```bash
+> ~/.telegram-topic-id/history.log
+```
