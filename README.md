@@ -44,7 +44,7 @@ Script akan meminta BOT TOKEN secara interaktif:
 Enter BOT TOKEN: ********************
 
 ## 📤 Output Example
-
+```yaml
 ==============================
  TELEGRAM TOPIC INFO
 ==============================
@@ -55,6 +55,8 @@ TEXT      : test
 FROM      : @username
 ==============================
 ✔ Logged to: /home/user/.telegram-topic-id/history.log
+
+```
 
 ## 📝 History / Log
 
